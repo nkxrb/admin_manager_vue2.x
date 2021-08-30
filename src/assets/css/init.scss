@@ -1,0 +1,12 @@
+#app{
+  .pointer{
+    cursor: pointer;
+  }
+  .el-table thead{
+    color: #333;
+  }
+
+  .el-tree .is-current >.el-tree-node__content{
+    color: #0383fa;
+  }
+}
