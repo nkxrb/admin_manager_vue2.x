@@ -49,10 +49,13 @@
 </template>
 
 <script>
-// import { pageRoutes } from '@/router'
+import Vue from 'vue'
+import { Menu, MenuItem, Submenu } from 'element-ui'
 import { mapGetters } from 'vuex'
+
+Vue.use(Menu).use(MenuItem).use(Submenu)
 export default {
-  name: 'LeekMenu',
+  name: 'MyNav',
   computed: {
     ...mapGetters({
       menuList: 'menuList'

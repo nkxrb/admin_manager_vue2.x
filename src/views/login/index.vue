@@ -42,17 +42,14 @@ export default {
     login () {
       this.$refs.accountForm.validate(valid => {
         if (valid) {
-          debugger
           const params = {
             username: this.accountForm.username,
             password: this.accountForm.password
           }
           this.logining = true
           this.$network.post('/login', params).then(res => {
-            debugger
             // 登录成功，配置token
-            const { token, roleId, username, permissions, menuIds } = res.data
-            console.log(menuIds)
+            const { token, roleId, username, permissions, menuIds } = res.result
             this.$store.commit(LOGIN, {
               accessToken: token,
               roleId: roleId,

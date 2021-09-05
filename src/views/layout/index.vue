@@ -1,26 +1,17 @@
 <template>
   <el-container style="height: 100vh;">
+    <!-- 头部 -->
     <el-header>
-      <img class="logo" src="../assets/img/nkxrb.png" />
-      <div class="user-info">
-        <div class="avatar-div">
-          <img style="width:100%;" src="../assets/img/avatar.jpg" />
-        </div>
-        <el-dropdown @command="handleCommand">
-          <span class="el-dropdown-link pointer">
-            {{username}}<i class="el-icon-arrow-down el-icon--right"></i>
-          </span>
-          <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item command="resetPassword">修改密码</el-dropdown-item>
-            <el-dropdown-item command="logoutUser">退出登陆</el-dropdown-item>
-          </el-dropdown-menu>
-        </el-dropdown>
-      </div>
+      <my-header></my-header>
     </el-header>
+
     <el-container>
+      <!-- 左侧导航 -->
       <el-aside width="180px" class="leek-l">
-        <Menu></Menu>
+        <my-nav></my-nav>
       </el-aside>
+
+      <!-- 主内容区 -->
       <el-main>
         <!-- 路由面包屑 -->
         <el-breadcrumb separator-class="el-icon-arrow-right">
@@ -37,15 +28,21 @@
 
 <script>
 import Vue from 'vue'
-import { Container, Header, Aside, Main, Dropdown, Breadcrumb, BreadcrumbItem } from 'element-ui'
+import MyHeader from './header.vue'
+import { Container, Header, Aside, Main, Breadcrumb, BreadcrumbItem } from 'element-ui'
+import { mapState } from 'vuex'
 import { LOGOUT } from '@/store/mutation-types'
-import Menu from './Menu.vue'
-Vue.use(Container).use(Header).use(Main).use(Aside).use(Dropdown).use(Breadcrumb).use(BreadcrumbItem)
+import MyNav from './nav.vue'
+Vue.use(Container).use(Header).use(Main).use(Aside).use(Breadcrumb).use(BreadcrumbItem)
 
 export default {
   name: 'Layout',
-  components: { Menu },
+  components: { MyHeader, MyNav },
   computed: {
+    ...mapState({
+      avatar: state => state.user.avatar,
+      username: state => state.user.username
+    }),
     breadcrumbList: function () {
       if (this.$route.name === 'home') {
         return []
@@ -105,49 +102,6 @@ export default {
       height: 30px;
       width: 30px;
       margin-right: 10px;
-    }
-  }
-  .leek-layout {
-    height: 100vh;
-    width: 100%;
-    min-width: 1100px;
-    display: flex;
-    .leek-l {
-      width: 180px;
-      height: 100%;
-      overflow: hidden;
-    }
-    .leek-r {
-      width: calc(100% - 180px);
-      height: 100%;
-    }
-    .leek-r-top {
-      padding: 0 20px;
-      display: flex;
-      height: 40px;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .leek-main {
-      padding: 20px;
-      height: calc(100% - 90px);
-      overflow-y: auto;
-    }
-    .view-fade-enter-active {
-      transition: all 0.5s ease;
-    }
-    .view-fade-leave-active {
-      transition: all 0.5s cubic-bezier(1, 0.2, 0.8, 1);
-    }
-    .view-fade-enter, .view-fade-leave-to/* .slide-fade-leave-active for below version 2.1.8 */ {
-      transform: translateX(-10px);
-      opacity: 0;
-    }
-  }
-
-  @media screen and (max-width: 1100px) {
-    .leek-layout {
-      height: calc(100vh - 10px);
     }
   }
 </style>

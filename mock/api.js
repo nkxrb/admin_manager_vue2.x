@@ -33,5 +33,5 @@ const mockList = [
 ]
 
 mockList.forEach(item => {
-  !item.disable && Mock.mock(BASE_URL + item.url, item.type || 'post', item.data)
+  !item.disable && Mock.mock(BASE_URL + item.url, item.type || 'post', { code: 200, result: item.data, msg: 'success' })
 })

@@ -17,8 +17,8 @@ const user = {
       return !!state.accessToken
     },
     menuList: (state) => {
-      if (!state.menuIds || Array.isArray(state.menuIds)) {
-        return
+      if (!state.menuIds || !Array.isArray(state.menuIds)) {
+        return []
       }
       const pageRoute = JSON.parse(JSON.stringify(pageRoutes))
       const menus = pageRoute.filter(item => {

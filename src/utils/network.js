@@ -46,7 +46,7 @@ axios.interceptors.response.use(response => {
     try {
       Message.warning(response.data.msg)
     } catch (error) {
-      Message.warning(error)
+      Message.warning(error.message)
     }
     return Promise.reject(response)
   }
@@ -199,3 +199,5 @@ export async function postmultipart (url, dataParam) {
     })
   })
 }
+
+export default axios
