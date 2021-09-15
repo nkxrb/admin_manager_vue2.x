@@ -1,14 +1,25 @@
 <template>
   <div>
-    <i class="el-icon-star-on home-icon"></i>
-    <h1>欢迎使用nkxrb's管理系统{{$t('sys.name')}}</h1>
+    <dynamic-bar-y class="home-echart"></dynamic-bar-y>
+    <dynamic-bar-y class="home-echart"></dynamic-bar-y>
+    <dynamic-bar-y class="home-echart"></dynamic-bar-y>
+    <dynamic-bar-y class="home-echart"></dynamic-bar-y>
+    <dynamic-bar-y class="home-echart"></dynamic-bar-y>
   </div>
 </template>
 
 <script>
+import DynamicBarY from '../../components/echarts/DynamicBarY.vue'
 export default {
+  components: { DynamicBarY },
   name: 'home',
   mounted () {
+    this.init()
+  },
+  methods: {
+    init () {
+
+    }
   }
 }
 </script>
@@ -17,5 +28,9 @@ export default {
   .home-icon {
     font-size: 38px;
     color: #1890ff;
+  }
+  .home-echart {
+    width: 500px;
+    height: 600px;
   }
 </style>>

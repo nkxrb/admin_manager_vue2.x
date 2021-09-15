@@ -12,6 +12,10 @@ const userInfo = {
   username: 'nkxrb',
   menuIds: [1, 2, 3, 11, 12, 13, 14]
 }
+const success = {
+  code: 200,
+  msg: 'success'
+}
 
 const userList = []
 
@@ -24,14 +28,29 @@ const userList = []
 const mockList = [
   {
     url: '/login',
-    data: userInfo
+    data: { ...success, result: userInfo }
   },
   {
     url: '/user/list',
-    data: userList
+    data: { ...success, 'result|20': userList }
+  },
+  {
+    url: '/list500',
+    data: {
+      ...success,
+      'result|15': [
+        {
+          'name|3-18': '@province',
+          'gdp|6000-400000': 1,
+          'people|20000-10000000': 1,
+          'subway|0-10': 1,
+          'value|20-7100000': 1
+        }
+      ]
+    }
   }
 ]
 
 mockList.forEach(item => {
-  !item.disable && Mock.mock(BASE_URL + item.url, item.type || 'post', { code: 200, result: item.data, msg: 'success' })
+  !item.disable && Mock.mock(BASE_URL + item.url, item.type || 'post', item.data)
 })

@@ -20,6 +20,9 @@ const page = name => () => import('../views/' + name)
 
 const pageRoutes = [
   { path: '/', name: 'home', meta: { id: 11, title: '首页', icon: 'el-icon-s-home' }, component: page('home/index.vue') },
+  { path: '/board', name: 'board', meta: { id: 12, title: '大屏看板', icon: 'el-icon-s-data' }, component: page('board/boardA.vue') },
+  { path: '/form', name: 'form', meta: { id: 13, title: '表单组件', icon: 'el-icon-s-data' }, component: page('form/formA.vue') },
+  { path: '/drag', name: 'drag', meta: { id: 14, title: '拖拽盒子', icon: 'el-icon-s-data' }, component: page('drag/index.vue') },
   {
     path: '/operate',
     name: 'operate',
